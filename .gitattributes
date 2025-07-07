@@ -1,0 +1,1 @@
+*.your-large-file-type filter=lfs diff=lfs merge=lfs -text
