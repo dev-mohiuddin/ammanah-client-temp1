@@ -5,6 +5,7 @@ import FAQ from "@/components/home/faq";
 import Contact from "@/components/home/contact";
 import Footer from "@/components/home/footer";
 import ProductCard from "@/components/common/product-card";
+import FoodProducts from "@/components/home/food-products";
 
 export default function Home() {
   return (
@@ -12,9 +13,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <TopFoodCategory />
-      <div className="container px-4 mx-auto">
-        <ProductCard />
-      </div>
+      <FoodProducts />
       <FAQ />
       <Contact />
       <Footer />
