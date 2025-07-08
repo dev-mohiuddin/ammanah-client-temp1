@@ -33,9 +33,17 @@ const ADD_ONS = [
   { id: "mango-add", label: "Mango", price: 1.2 },
 ];
 
-const ALLERGENS = [
-  { id: "sf", label: "Sugar Free (SF)" },
-  { id: "vg", label: "Vegan (VG)" },
+const MODIFIERS = [
+  { id: "hot", label: "Hot" },
+  { id: "soucy", label: "Soucy" },
+  { id: "thick", label: "Thick" },
+  { id: "chili", label: "Chili" },
+  { id: "corianer", label: "Oil" },
+  { id: "well-done", label: "Well Done/Well Coocked" },
+  { id: "garlic", label: "Garlic" },
+  { id: "pepper", label: "Pepper" },
+  { id: "mild", label: "Mild" },
+  { id: "chase", label: "Chase" },
 ];
 
 function AddProductModal({ product, isOpen, onClose, onConfirm }) {
@@ -53,7 +61,7 @@ function AddProductModal({ product, isOpen, onClose, onConfirm }) {
     selectedIngredientIds.includes(i.id)
   );
   const selectedAddOns = ADD_ONS.filter((a) => selectedAddOnIds.includes(a.id));
-  const selectedAllergen = ALLERGENS.find((a) => a.id === selectedAllergenId);
+  const selectedAllergen = MODIFIERS.find((a) => a.id === selectedAllergenId);
 
   const totalPrice = useMemo(() => {
     let total = product.basePrice;
@@ -100,9 +108,7 @@ function AddProductModal({ product, isOpen, onClose, onConfirm }) {
                   </div>
                   <div className="w-2/3">
                     <h3 className="font-semibold text-lg">Item Info</h3>
-                    <p className="text-sm ">
-                      {product.description}
-                    </p>
+                    <p className="text-sm ">{product.description}</p>
                   </div>
                 </div>
 
@@ -172,9 +178,7 @@ function AddProductModal({ product, isOpen, onClose, onConfirm }) {
                           <span className="text-xs ">
                             {size.price > 0 ? `+${size.price.toFixed(2)}` : ""}
                           </span>
-                          <span className="text-xs ">
-                            {size.calories} kcal
-                          </span>
+                          <span className="text-xs ">{size.calories} kcal</span>
                         </ToggleGroupItem>
                       ))}
                     </ToggleGroup>
@@ -232,22 +236,22 @@ function AddProductModal({ product, isOpen, onClose, onConfirm }) {
 
                   {/* Allergen */}
                   <div>
-                    <h4 className="font-semibold mb-2">Allergen</h4>
+                    <h4 className="font-semibold mb-2">Modifier</h4>
                     <ToggleGroup
-                      type="single"
+                      type="multiple"
                       value={selectedAllergenId}
                       onValueChange={(value) =>
                         value && setSelectedAllergenId(value)
                       }
-                      className="justify-start gap-4 relative"
+                      className="grid grid-cols-3 gap-4"
                     >
-                      {ALLERGENS.map((allergen) => (
+                      {MODIFIERS.map((modifire) => (
                         <ToggleGroupItem
-                          key={allergen.id}
-                          value={allergen.id}
+                          key={modifire.id}
+                          value={modifire.id}
                           className="h-auto relative flex p-1 px-4 data-[state=on]:bg-primary/20 data-[state=on]:border-primary border-1 "
                         >
-                          <span>{allergen.label}</span>
+                          <span>{modifire.label}</span>
                         </ToggleGroupItem>
                       ))}
                     </ToggleGroup>
